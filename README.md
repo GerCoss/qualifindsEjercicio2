@@ -7,7 +7,7 @@ Estas son las instrucciones para ejecutar el Dockerfile que se proporciona en es
 Clonar el repositorio que contiene el Dockerfile:
 
 ```bash
-git clone <url del repositorio>
+git clone https://github.com/GerCoss/qualifindsEjercicio2.git
 ```
 
 ## Paso 2: Moverse al directorio del Dockerfile
