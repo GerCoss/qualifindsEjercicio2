@@ -1,6 +1,6 @@
 # Instrucciones para ejecutar el Dockerfile
 
-Estas son las instrucciones para ejecutar el Dockerfile que se proporciona en este repositorio.
+Estas son las instrucciones para ejecutar el programa para la extracción de productos a partir de una url del sitio https://super.walmart.com.mx/.
 
 ## Paso 1: Clonar el repositorio
 
