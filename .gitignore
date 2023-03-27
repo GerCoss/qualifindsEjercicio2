@@ -2,7 +2,7 @@
 node_modules/
 build/
 dist/
-output/*
+result.json
 
 # ignorar archivos de dependencias
 package-lock.json

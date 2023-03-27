@@ -1,3 +1,5 @@
+// node ejercicio2.js https://super.walmart.com.mx/content/abarrotes/alimentos-saludables/120005_3020112 key
+
 const puppeteer = require("puppeteer");
 const fs = require("fs");
 const url = process.env.URL || process.argv[2];
