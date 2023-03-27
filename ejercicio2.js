@@ -1,22 +1,36 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
 const url = process.env.URL || process.argv[2];
+const api_key = process.env.URL || process.argv[3];
+// ScrapeOps proxy configuration
+PROXY_USERNAME = 'scrapeops.headless_browser_mode=true';
+PROXY_PASSWORD = api_key; // <-- enter your API_Key here
+PROXY_SERVER = 'proxy.scrapeops.io';
+PROXY_SERVER_PORT = '5353';
 
 if (!url) {
   console.error("Por favor proporciona una URL como argumento");
   process.exit(1);
 }
+if (!api_key) {
+  console.error("Por favor proporciona una api_key");
+  process.exit(1);
+}
 
 (async () => {
   try {
-    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+    const browser = await puppeteer.launch({ignoreHTTPSErrors: true,args: ['--no-sandbox', '--disable-setuid-sandbox',`--proxy-server=http://${PROXY_SERVER}:${PROXY_SERVER_PORT}`]});
     const page = await browser.newPage();
+    await page.authenticate({
+      username: PROXY_USERNAME,
+      password: PROXY_PASSWORD,
+    });
     const ua =
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36";
     await page.setUserAgent(ua);
+    
     await page.goto(url, { waitUntil: "domcontentloaded" });
     await page.waitForFunction('document.readyState === "complete"');
-
     const categories = await page.evaluate(() => {
       const categories = [];
       const categoryElements = document.querySelectorAll(
@@ -51,7 +65,7 @@ if (!url) {
 
     console.log(categories);
     const jsonResult = JSON.stringify(categories, null, 2);
-    fs.writeFile("result.json", jsonResult, "utf8", (err) => {
+    fs.writeFile("./output/result.json", jsonResult, "utf8", (err) => {
       if (err) {
         console.log("Error al guardar el archivo:", err);
       } else {
