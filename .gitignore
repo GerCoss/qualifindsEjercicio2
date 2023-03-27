@@ -1,0 +1,7 @@
+# ignorar archivos generados automáticamente
+node_modules/
+build/
+dist/
+
+# ignorar archivos de dependencias
+package-lock.json
