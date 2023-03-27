@@ -31,7 +31,12 @@ docker build -t <nombre de la imagen> .
 Ejecutar el contenedor Docker con las variables de entorno configuradas para la URL y la clave API_Key, y montar un volumen de directorio compartido entre el contenedor y el host:
 
 ```bash
-docker run -e url=<URL> -e api_key=<API_Key> -v <ruta local del host>:/app/output <nombre de la imagen>
+docker run -v <ruta local del host>:/app/output -e url=<URL> -e api_key=<API_Key> <nombre de la imagen>
+```
+
+Ejemplo:
+```bash
+docker run -v "$(pwd)":/app/output -e url=https://super.walmart.com.mx/content/bebidas-y-licores/licores/3680051_120099 -e api_key=3424l3425134 myscraper
 ```
 
 Asegúrese de reemplazar `<URL>`, `<API_Key>`, `<ruta local del host>` y `<nombre de la imagen>` con los valores correspondientes en su caso.
