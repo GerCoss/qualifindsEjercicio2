@@ -36,7 +36,7 @@ docker run -v <ruta local del host>:/app/output -e url=<URL> -e api_key=<API_Key
 
 Ejemplo:
 ```bash
-docker run -v "$(pwd)":/app/output -e url=https://super.walmart.com.mx/content/bebidas-y-licores/licores/3680051_120099 -e api_key=3424l3425134 myscraper
+docker run -v ${PWD}:/app/output -e url=https://super.walmart.com.mx/content/bebidas-y-licores/licores/3680051_120099 -e api_key=3424l3425134 myscraper
 ```
 
 Asegúrese de reemplazar `<URL>`, `<API_Key>`, `<ruta local del host>` y `<nombre de la imagen>` con los valores correspondientes en su caso.
